@@ -1,1 +1,21 @@
 # conservative_autoencoder
+
+
+Python (Theano) implementation of conservative auto-encoder code provided 
+by Daniel Jiwoong Im and Mohamed Ishmael Diwan Belghazi.
+The codes include experiments on hodge decomposition, in particular convservative components (for now),
+and vector field deformations in 2D. For more information, see _
+
+## Dependencies
+Packages
+* [numpy](http://www.numpy.org/)
+* [Theano](http://deeplearning.net/software/theano/)
+
+
+## How to run
+Entry code for one-bit flip and factored minimum probability flow for mnist data are 
+```
+    - mnist_1bit_mpf.py
+    - /vector_field_deformation/mnist_train.py
+```
+

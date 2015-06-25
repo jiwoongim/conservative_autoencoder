@@ -146,9 +146,6 @@ def optimize_ae(train_set, valid_set, test_set, hyper_params, model_type, noise_
             params_vec = roll_param(params)
 
     plt.plot(np.arange(len(mag_curls)), mag_curls, 'r,')
-    #plt.show()
-    import pdb; pdb.set_trace()
-
 
 def run_ae(train_set, valid_set, test_set, hyper_params, model_type, noise_type, logOn, observeF, wlFlag=False, binaryF=False, symF=False):
 
@@ -228,7 +225,7 @@ def run_ae(train_set, valid_set, test_set, hyper_params, model_type, noise_type,
             mag_curls.append(log_mag_curl)
             xaxis.append(epoch)
             #import pdb; pdb.set_trace()
-            visualize_vector(ae,density, train_data,curls=curls, fname='/line/fcase1_sig/line_'+model_type+'_'+activation+str(epoch))
+            visualize_vector(ae,density, train_data,curls=curls, fname='figs/'+datatype+'/'+model_type+'_'+activation+str(epoch))
 
         #if epoch == 0: visualize_vector(ae,density, train_data,curls=curls, fname='fcase1_relu/spiral_'+model_type+'_'+activation+str(epoch))
         epoch = epoch + 1
@@ -298,16 +295,14 @@ def run_ae(train_set, valid_set, test_set, hyper_params, model_type, noise_type,
 
             start_ae = timeit.default_timer()
 
-    print epoch
-    visualize_vector(ae,density, train_data, curls=curls, fname='line/fcase1_sig/line_'+model_type+'_'+activation+str(epoch))
+    visualize_vector(ae,density, train_data, curls=curls, fname='figs/'+datatype+'/'+model_type+'_'+activation+str(epoch))
     end_time = time.clock()
     test_loss = test_model()
+
     print 'Test Loss %g' % test_loss
     plt.figure()
-    #plt.tight_layout()
     plt.plot(xaxis, mag_curls, 'r.-')
     plt.savefig('./figs/relu_mag_curl.pdf',bbox_inches='tight') 
-    #plt.show()
 
 
 
@@ -335,7 +330,8 @@ def run_ae(train_set, valid_set, test_set, hyper_params, model_type, noise_type,
 
     return best_validation_loss , best_epoch, ae, logTimes, test_loss, avg_pos_eigs_train, avg_pos_eigs_valid,\
                         avg_distI_tr, avg_distI_vl, avg_distAng_tr, avg_distAng_vl
-                                                   
+               
+datatype='line'
 histF=False
 lam = 0.0
 model_type='dae' #**
@@ -346,7 +342,6 @@ logOn=False
 observeF=False
 wlFlag=False
 activation='sig'
-
 symF=False
 num_fold=1
 if activation == 'relu': 
@@ -411,9 +406,12 @@ print 'Activation : %s' % activation
 
 if __name__ == '__main__':
 
-    data_path = current_path+'line_data.save'
-    #data_path = current_path+'circle_data.save'
-    #data_path = current_path+'spiral_data.save'
+    if datatype=='line':
+        data_path = '../synthetic_data/line_data.save'
+    elif datatype=='circle':
+        data_path = '../synthetic_data/circle_data.save'
+    elif datatype=='spiral':
+        data_path = '../synthetic_data/spiral_data.save'
     print 'opening data'
     f = open(data_path)
     train_data, valid_data, test_data = pickle.load(f)
