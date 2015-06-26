@@ -27,7 +27,7 @@ Packages
 ## How to run
 Entry code for one-bit flip and factored minimum probability flow for mnist data are 
 ```
-    - mnist_1bit_mpf.py
+    - /hodge_experiment/mnist_synthetic.py
     - /vector_field_deformation/mnist_train.py
 ```
 
