@@ -10,7 +10,7 @@ and vector field deformations in 2D. For more information, see
 @article{Im2015cae,
     title={Conservativeness of untied auto-encoders},
     author={Im, Daniel Jiwoong and Belghanzi, Mohamed Ishmael Diwan and Memisevic, Roland},
-    journal={http://arxiv.org/pdf/1506.07643.pdf},
+    journal={AAAI-16 AAAI Conference on Artificial Intelligence},
     year={2015}
 }
 ```
